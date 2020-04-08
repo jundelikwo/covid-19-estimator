@@ -46,3 +46,15 @@ test('severeImpact.infectionsByRequestedTime returns the correct data when reque
   const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 512);
 });
+
+test('impact.infectionsByRequestedTime returns the correct data when requested time is 3 weeks', () => {
+  const inputData = { ...data, periodType: 'weeks', timeToElapse: 3 };
+  const result = covid19ImpactEstimator(inputData);
+  expect(result.impact.infectionsByRequestedTime).toBe(data.reportedCases * 10 * 128);
+});
+
+test('severeImpact.infectionsByRequestedTime returns the correct data when requested time is 3 weeks', () => {
+  const inputData = { ...data, periodType: 'weeks', timeToElapse: 3 };
+  const result = covid19ImpactEstimator(inputData);
+  expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 128);
+});
