@@ -33,6 +33,7 @@ const covid19ImpactEstimator = (data) => {
   result.severeImpact.infectionsByRequestedTime = result.severeImpact.currentlyInfected * (2 ** factor);
 
   result.impact.severeCasesByRequestedTime = result.impact.infectionsByRequestedTime * 0.15;
+  result.severeImpact.severeCasesByRequestedTime = result.severeImpact.infectionsByRequestedTime * 0.15;
 
   return result;
 };
