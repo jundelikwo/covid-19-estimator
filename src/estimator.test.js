@@ -37,5 +37,10 @@ test('severeImpact.currentlyInfected returns the correct data', () => {
 
 test('impact.infectionsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  expect(result.impact.infectionsByRequestedTime,).toBe(data.reportedCases * 10 * 512);
+  expect(result.impact.infectionsByRequestedTime).toBe(data.reportedCases * 10 * 512);
+});
+
+test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 512);
 });
