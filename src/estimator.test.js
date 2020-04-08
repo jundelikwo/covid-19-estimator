@@ -29,3 +29,8 @@ test('impact.currentlyInfected returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.currentlyInfected).toBe(data.reportedCases * 10);
 });
+
+test('severeImpact.currentlyInfected returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.severeImpact.currentlyInfected).toBe(data.reportedCases * 50);
+});
