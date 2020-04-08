@@ -8,7 +8,7 @@ const data = {
     avgDailyIncomePopulation: 0.71
   },
   periodType: 'days',
-  timeToElapse: 28,
+  timeToElapse: 58,
   reportedCases: 674,
   population: 66622705,
   totalHospitalBeds: 1380614
@@ -35,12 +35,14 @@ test('severeImpact.currentlyInfected returns the correct data', () => {
   expect(result.severeImpact.currentlyInfected).toBe(data.reportedCases * 50);
 });
 
-test('impact.infectionsByRequestedTime returns the correct data', () => {
-  const result = covid19ImpactEstimator(data);
+test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
+  const inputData = { ...data, timeToElapse: 28 };
+  const result = covid19ImpactEstimator(inputData);
   expect(result.impact.infectionsByRequestedTime).toBe(data.reportedCases * 10 * 512);
 });
 
-test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
-  const result = covid19ImpactEstimator(data);
+test('severeImpact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
+  const inputData = { ...data, timeToElapse: 28 };
+  const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 512);
 });
