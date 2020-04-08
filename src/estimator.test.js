@@ -35,6 +35,16 @@ test('severeImpact.currentlyInfected returns the correct data', () => {
   expect(result.severeImpact.currentlyInfected).toBe(data.reportedCases * 50);
 });
 
+test('impact.infectionsByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.impact.infectionsByRequestedTime).toBe(data.reportedCases * 10 * 524288);
+});
+
+test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 524288);
+});
+
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
   const inputData = { ...data, timeToElapse: 28 };
   const result = covid19ImpactEstimator(inputData);
