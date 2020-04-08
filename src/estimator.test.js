@@ -80,3 +80,8 @@ test('severeImpact.infectionsByRequestedTime returns the correct data when reque
   const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime).toBe(data.reportedCases * 50 * 1048576);
 });
+
+test('impact.severeCasesByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.impact.severeCasesByRequestedTime).toBe(data.reportedCases * 10 * 524288 * 0.15);
+});
