@@ -23,5 +23,9 @@ test('returns the right data structure', () => {
       severeImpact: expect.any(Object)
     })
   );
-  // expect((123)).toBe(123);
+});
+
+test('impact.currentlyInfected returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.impact.currentlyInfected).toBe(data.reportedCases * 10);
 });
