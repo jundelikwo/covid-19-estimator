@@ -18,6 +18,7 @@ const getInfectionsFactor = (periodType, timeToElapse) => {
 };
 
 const covid19ImpactEstimator = (data) => {
+    // CHALLENGE 1
   const result = {
     data,
     impact: {},
@@ -32,11 +33,14 @@ const covid19ImpactEstimator = (data) => {
   result.impact.infectionsByRequestedTime = result.impact.currentlyInfected * (2 ** factor);
   result.severeImpact.infectionsByRequestedTime = result.severeImpact.currentlyInfected * (2 ** factor);
 
+  // CHALLENGE 2
+
   result.impact.severeCasesByRequestedTime = result.impact.infectionsByRequestedTime * 0.15;
   result.severeImpact.severeCasesByRequestedTime = result.severeImpact.infectionsByRequestedTime * 0.15;
 
   const availableBeds = Math.floor(data.totalHospitalBeds * 0.35);
   result.impact.hospitalBedsByRequestedTime = availableBeds - result.impact.severeCasesByRequestedTime;
+  result.severeImpact.hospitalBedsByRequestedTime = availableBeds - result.severeImpact.severeCasesByRequestedTime;
 
   return result;
 };
