@@ -93,6 +93,6 @@ test('severeImpact.severeCasesByRequestedTime returns the correct data', () => {
 
 test('impact.hospitalBedsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  const hospitalBedsByRequestedTime = Math.floor(data.totalHospitalBeds * 0.35) - (data.reportedCases * 10 * 524288 * 0.15 * 0.35);
+  const hospitalBedsByRequestedTime = Math.floor(data.totalHospitalBeds * 0.35) - (data.reportedCases * 10 * 524288 * 0.15);
   expect(result.impact.hospitalBedsByRequestedTime).toBe(hospitalBedsByRequestedTime);
 });
