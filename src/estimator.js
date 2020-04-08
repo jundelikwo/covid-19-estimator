@@ -25,29 +25,29 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: {}
   };
 
-  result.impact.currentlyInfected = data.reportedCases * 10;
-  result.severeImpact.currentlyInfected = data.reportedCases * 50;
+  result.impact.currentlyInfected = Math.floor(data.reportedCases * 10);
+  result.severeImpact.currentlyInfected = Math.floor(data.reportedCases * 50);
 
   const factor = getInfectionsFactor(data.periodType, data.timeToElapse);
 
-  result.impact.infectionsByRequestedTime = result.impact.currentlyInfected * (2 ** factor);
-  result.severeImpact.infectionsByRequestedTime = result.severeImpact.currentlyInfected * (2 ** factor);
+  result.impact.infectionsByRequestedTime = Math.floor(result.impact.currentlyInfected * (2 ** factor));
+  result.severeImpact.infectionsByRequestedTime = Math.floor(result.severeImpact.currentlyInfected * (2 ** factor));
 
   // CHALLENGE 2
 
-  result.impact.severeCasesByRequestedTime = result.impact.infectionsByRequestedTime * 0.15;
-  result.severeImpact.severeCasesByRequestedTime = result.severeImpact.infectionsByRequestedTime * 0.15;
+  result.impact.severeCasesByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.15);
+  result.severeImpact.severeCasesByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.15);
 
   const availableBeds = Math.floor(data.totalHospitalBeds * 0.35);
-  result.impact.hospitalBedsByRequestedTime = availableBeds - result.impact.severeCasesByRequestedTime;
-  result.severeImpact.hospitalBedsByRequestedTime = availableBeds - result.severeImpact.severeCasesByRequestedTime;
+  result.impact.hospitalBedsByRequestedTime = Math.floor(availableBeds - result.impact.severeCasesByRequestedTime);
+  result.severeImpact.hospitalBedsByRequestedTime = Math.floor(availableBeds - result.severeImpact.severeCasesByRequestedTime);
 
   // CHALLENGE 3
 
-  result.impact.casesForICUByRequestedTime = result.impact.infectionsByRequestedTime * 0.05;
-  result.severeImpact.casesForICUByRequestedTime = result.severeImpact.infectionsByRequestedTime * 0.05;
+  result.impact.casesForICUByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.05);
+  result.severeImpact.casesForICUByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.05);
 
-  result.impact.casesForVentilatorsByRequestedTime = result.impact.infectionsByRequestedTime * 0.02;
+  result.impact.casesForVentilatorsByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.02);
 
   return result;
 };
