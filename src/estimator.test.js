@@ -112,3 +112,8 @@ test('severeImpact.casesForICUByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.casesForICUByRequestedTime).toBe(data.reportedCases * 50 * 524288 * 0.05);
 });
+
+test('impact.casesForVentilatorsByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.impact.casesForICUByRequestedTime).toBe(data.reportedCases * 10 * 524288 * 0.02);
+});
