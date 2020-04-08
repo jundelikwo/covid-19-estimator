@@ -45,6 +45,7 @@ const covid19ImpactEstimator = (data) => {
   // CHALLENGE 3
 
   result.impact.casesForICUByRequestedTime = result.impact.infectionsByRequestedTime * 0.05;
+  result.severeImpact.casesForICUByRequestedTime = result.severeImpact.infectionsByRequestedTime * 0.05;
 
   return result;
 };
