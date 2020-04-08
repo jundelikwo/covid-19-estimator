@@ -85,3 +85,8 @@ test('impact.severeCasesByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.severeCasesByRequestedTime).toBe(data.reportedCases * 10 * 524288 * 0.15);
 });
+
+test('severeImpact.severeCasesByRequestedTime returns the correct data', () => {
+  const result = covid19ImpactEstimator(data);
+  expect(result.severeImpact.severeCasesByRequestedTime).toBe(data.reportedCases * 50 * 524288 * 0.15);
+});
