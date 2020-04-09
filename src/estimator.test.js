@@ -53,6 +53,10 @@ test('getInfectionsFactor returns the correct data when requested time is 4 week
   expect(getInfectionsFactor('weeks', 2)).toBe(4);
 });
 
+test('getInfectionsFactor returns the correct data when requested time is 3 months', () => {
+  expect(getInfectionsFactor('months', 3)).toBe(30);
+});
+
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
   const inputData = { ...data, timeToElapse: 28 };
   const result = covid19ImpactEstimator(inputData);
