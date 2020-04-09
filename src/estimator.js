@@ -1,20 +1,20 @@
-export const getInfectionsFactor = (periodType, timeToElapse) => {
-  let factor;
+export const getNumberOfDays = (periodType, timeToElapse) => {
+  let days;
   switch (periodType) {
     case 'days':
-      factor = Math.floor(timeToElapse / 3);
+      days = timeToElapse;
       break;
     case 'weeks':
-      factor = Math.floor(timeToElapse * 7 / 3);
+      days = timeToElapse * 7;
       break;
     case 'months':
-      factor = Math.floor(timeToElapse * 30 / 3);
+      days = timeToElapse * 30;
       break;
     default:
-      factor = 1;
+      days = 0;
       break;
   }
-  return factor;
+  return days;
 };
 
 const covid19ImpactEstimator = (data) => {
@@ -28,7 +28,8 @@ const covid19ImpactEstimator = (data) => {
   result.impact.currentlyInfected = Math.floor(data.reportedCases * 10);
   result.severeImpact.currentlyInfected = Math.floor(data.reportedCases * 50);
 
-  const factor = getInfectionsFactor(data.periodType, data.timeToElapse);
+  const days = getNumberOfDays(data.periodType, data.timeToElapse);
+  const factor = Math.floor(days / 3);
 
   result.impact.infectionsByRequestedTime = Math.floor(result.impact.currentlyInfected * (2 ** factor));
   result.severeImpact.infectionsByRequestedTime = Math.floor(result.severeImpact.currentlyInfected * (2 ** factor));

@@ -1,4 +1,4 @@
-import covid19ImpactEstimator, { getInfectionsFactor } from './estimator';
+import covid19ImpactEstimator, { getNumberOfDays } from './estimator';
 
 const data = {
   region: {
@@ -45,16 +45,16 @@ test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
   expect(result.severeImpact.infectionsByRequestedTime).toBe(Math.floor(data.reportedCases * 50 * 524288));
 });
 
-test('getInfectionsFactor returns the correct data when requested time is 28 days', () => {
-  expect(getInfectionsFactor('days', 28)).toBe(9);
+test('getNumberOfDays returns the correct data when requested time is 28 days', () => {
+  expect(getNumberOfDays('days', 28)).toBe(28);
 });
 
-test('getInfectionsFactor returns the correct data when requested time is 4 weeks', () => {
-  expect(getInfectionsFactor('weeks', 2)).toBe(4);
+test('getNumberOfDays returns the correct data when requested time is 4 weeks', () => {
+  expect(getNumberOfDays('weeks', 2)).toBe(14);
 });
 
-test('getInfectionsFactor returns the correct data when requested time is 3 months', () => {
-  expect(getInfectionsFactor('months', 3)).toBe(30);
+test('getNumberOfDays returns the correct data when requested time is 3 months', () => {
+  expect(getNumberOfDays('months', 3)).toBe(90);
 });
 
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
