@@ -137,5 +137,5 @@ test('severeImpact.casesForVentilatorsByRequestedTime returns the correct data',
 
 test('impact.dollarsInFlight returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  expect(result.impact.dollarsInFlight).toBe(Math.floor(data.reportedCases * 10 * 524288 * 0.71 * 5 * 58));
+  expect(result.impact.dollarsInFlight).toBe((data.reportedCases * 10 * 524288 * 0.71 * 5 * 58).toFixed(2));
 });
