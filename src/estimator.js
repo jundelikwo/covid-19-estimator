@@ -51,6 +51,8 @@ const covid19ImpactEstimator = (data) => {
   result.impact.casesForVentilatorsByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.02);
   result.severeImpact.casesForVentilatorsByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.02);
 
+  result.impact.dollarsInFlight = (result.impact.infectionsByRequestedTime * days * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation).toFixed(2);
+
   return result;
 };
 
