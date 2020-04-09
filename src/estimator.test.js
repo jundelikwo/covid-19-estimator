@@ -1,4 +1,4 @@
-import covid19ImpactEstimator from './estimator';
+import covid19ImpactEstimator, { getInfectionsFactor } from './estimator';
 
 const data = {
   region: {
@@ -43,6 +43,10 @@ test('impact.infectionsByRequestedTime returns the correct data', () => {
 test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.infectionsByRequestedTime).toBe(Math.floor(data.reportedCases * 50 * 524288));
+});
+
+test('getInfectionsFactor returns the correct data when requested time is 28 days', () => {
+  expect(getInfectionsFactor('days', 28)).toBe(9);
 });
 
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {

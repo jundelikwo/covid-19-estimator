@@ -1,4 +1,4 @@
-const getInfectionsFactor = (periodType, timeToElapse) => {
+export const getInfectionsFactor = (periodType, timeToElapse) => {
   let factor;
   switch (periodType) {
     case 'days':
