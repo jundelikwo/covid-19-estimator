@@ -31,28 +31,45 @@ const covid19ImpactEstimator = (data) => {
   const days = getNumberOfDays(data.periodType, data.timeToElapse);
   const factor = Math.floor(days / 3);
 
-  result.impact.infectionsByRequestedTime = Math.floor(result.impact.currentlyInfected * (2 ** factor));
-  result.severeImpact.infectionsByRequestedTime = Math.floor(result.severeImpact.currentlyInfected * (2 ** factor));
+  result.impact.infectionsByRequestedTime = Math.floor(result.impact.currentlyInfected
+    * (2 ** factor));
+  result.severeImpact.infectionsByRequestedTime = Math.floor(result.severeImpact.currentlyInfected
+    * (2 ** factor));
 
   // CHALLENGE 2
 
-  result.impact.severeCasesByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.15);
-  result.severeImpact.severeCasesByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.15);
+  result.impact.severeCasesByRequestedTime = Math.floor(
+    result.impact.infectionsByRequestedTime * 0.15
+  );
+  result.severeImpact.severeCasesByRequestedTime = Math.floor(
+    result.severeImpact.infectionsByRequestedTime * 0.15
+  );
 
   const availableBeds = Math.floor(data.totalHospitalBeds * 0.35);
-  result.impact.hospitalBedsByRequestedTime = Math.floor(availableBeds - result.impact.severeCasesByRequestedTime);
-  result.severeImpact.hospitalBedsByRequestedTime = Math.floor(availableBeds - result.severeImpact.severeCasesByRequestedTime);
+  result.impact.hospitalBedsByRequestedTime = Math.floor(availableBeds
+    - result.impact.severeCasesByRequestedTime);
+  result.severeImpact.hospitalBedsByRequestedTime = Math.floor(availableBeds
+    - result.severeImpact.severeCasesByRequestedTime);
 
   // CHALLENGE 3
 
-  result.impact.casesForICUByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.05);
-  result.severeImpact.casesForICUByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.05);
+  result.impact.casesForICUByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime
+    * 0.05);
+  result.severeImpact.casesForICUByRequestedTime = Math.floor(
+    result.severeImpact.infectionsByRequestedTime * 0.05
+  );
 
-  result.impact.casesForVentilatorsByRequestedTime = Math.floor(result.impact.infectionsByRequestedTime * 0.02);
-  result.severeImpact.casesForVentilatorsByRequestedTime = Math.floor(result.severeImpact.infectionsByRequestedTime * 0.02);
+  result.impact.casesForVentilatorsByRequestedTime = Math.floor(
+    result.impact.infectionsByRequestedTime * 0.02
+  );
+  result.severeImpact.casesForVentilatorsByRequestedTime = Math.floor(
+    result.severeImpact.infectionsByRequestedTime * 0.02
+  );
 
-  result.impact.dollarsInFlight = (result.impact.infectionsByRequestedTime * days * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation).toFixed(2);
-  result.severeImpact.dollarsInFlight = (result.severeImpact.infectionsByRequestedTime * days * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation).toFixed(2);
+  result.impact.dollarsInFlight = (result.impact.infectionsByRequestedTime * days
+    * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation).toFixed(2);
+  result.severeImpact.dollarsInFlight = (result.severeImpact.infectionsByRequestedTime * days
+    * data.region.avgDailyIncomeInUSD * data.region.avgDailyIncomePopulation).toFixed(2);
 
   return result;
 };
