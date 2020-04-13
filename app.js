@@ -71,9 +71,9 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
       time = `0${time.toString()}`;
     }
 
-    const log = `GET\t\t${req.route.path}\t\t200\t\t${time} ms\n`;
+    const log = `GET\t\t${req.route.path}\t\t200\t\t${time} ms`;
 
-    fs.appendFile(logFile, log, () => {});
+    fs.appendFile(logFile, `${log}\n`, () => {});
 
     res.send((content || '') + log);
   });
