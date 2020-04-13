@@ -27,24 +27,24 @@ test('returns the right data structure', () => {
 
 test('impact.currentlyInfected returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  expect(result.impact.currentlyInfected).toBe(Math.floor(data.reportedCases * 10));
+  expect(result.impact.currentlyInfected).toBe(Math.trunc(data.reportedCases * 10));
 });
 
 test('severeImpact.currentlyInfected returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  expect(result.severeImpact.currentlyInfected).toBe(Math.floor(data.reportedCases * 50));
+  expect(result.severeImpact.currentlyInfected).toBe(Math.trunc(data.reportedCases * 50));
 });
 
 test('impact.infectionsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 10 * 524288));
+    .toBe(Math.trunc(data.reportedCases * 10 * 524288));
 });
 
 test('severeImpact.infectionsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 524288));
+    .toBe(Math.trunc(data.reportedCases * 50 * 524288));
 });
 
 test('getNumberOfDays returns the correct data when requested time is 28 days', () => {
@@ -62,102 +62,102 @@ test('getNumberOfDays returns the correct data when requested time is 3 months',
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
   const inputData = { ...data, timeToElapse: 28 };
   const result = covid19ImpactEstimator(inputData);
-  expect(result.impact.infectionsByRequestedTime).toBe(Math.floor(data.reportedCases * 10 * 512));
+  expect(result.impact.infectionsByRequestedTime).toBe(Math.trunc(data.reportedCases * 10 * 512));
 });
 
 test('severeImpact.infectionsByRequestedTime returns the correct data when requested time is 28 days', () => {
   const inputData = { ...data, timeToElapse: 28 };
   const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 512));
+    .toBe(Math.trunc(data.reportedCases * 50 * 512));
 });
 
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 3 weeks', () => {
   const inputData = { ...data, periodType: 'weeks', timeToElapse: 3 };
   const result = covid19ImpactEstimator(inputData);
-  expect(result.impact.infectionsByRequestedTime).toBe(Math.floor(data.reportedCases * 10 * 128));
+  expect(result.impact.infectionsByRequestedTime).toBe(Math.trunc(data.reportedCases * 10 * 128));
 });
 
 test('severeImpact.infectionsByRequestedTime returns the correct data when requested time is 3 weeks', () => {
   const inputData = { ...data, periodType: 'weeks', timeToElapse: 3 };
   const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 128));
+    .toBe(Math.trunc(data.reportedCases * 50 * 128));
 });
 
 test('impact.infectionsByRequestedTime returns the correct data when requested time is 2 months', () => {
   const inputData = { ...data, periodType: 'months', timeToElapse: 2 };
   const result = covid19ImpactEstimator(inputData);
   expect(result.impact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 10 * 1048576));
+    .toBe(Math.trunc(data.reportedCases * 10 * 1048576));
 });
 
 test('severeImpact.infectionsByRequestedTime returns the correct data when requested time is 2 months', () => {
   const inputData = { ...data, periodType: 'months', timeToElapse: 2 };
   const result = covid19ImpactEstimator(inputData);
   expect(result.severeImpact.infectionsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 1048576));
+    .toBe(Math.trunc(data.reportedCases * 50 * 1048576));
 });
 
 test('impact.severeCasesByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.severeCasesByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 10 * 524288 * 0.15));
+    .toBe(Math.trunc(data.reportedCases * 10 * 524288 * 0.15));
 });
 
 test('severeImpact.severeCasesByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.severeCasesByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 524288 * 0.15));
+    .toBe(Math.trunc(data.reportedCases * 50 * 524288 * 0.15));
 });
 
 test('impact.hospitalBedsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  const hospitalBedsByRequestedTime = Math.floor(data.totalHospitalBeds * 0.35)
+  const hospitalBedsByRequestedTime = Math.trunc(data.totalHospitalBeds * 0.35)
     - (data.reportedCases * 10 * 524288 * 0.15);
-  expect(result.impact.hospitalBedsByRequestedTime).toBe(Math.floor(hospitalBedsByRequestedTime));
+  expect(result.impact.hospitalBedsByRequestedTime).toBe(Math.trunc(hospitalBedsByRequestedTime));
 });
 
 test('severeImpact.hospitalBedsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
-  const hospitalBedsByRequestedTime = Math.floor(data.totalHospitalBeds * 0.35)
+  const hospitalBedsByRequestedTime = Math.trunc(data.totalHospitalBeds * 0.35)
     - (data.reportedCases * 50 * 524288 * 0.15);
   expect(result.severeImpact.hospitalBedsByRequestedTime)
-    .toBe(Math.floor(hospitalBedsByRequestedTime));
+    .toBe(Math.trunc(hospitalBedsByRequestedTime));
 });
 
 test('impact.casesForICUByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.casesForICUByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 10 * 524288 * 0.05));
+    .toBe(Math.trunc(data.reportedCases * 10 * 524288 * 0.05));
 });
 
 test('severeImpact.casesForICUByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.casesForICUByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 524288 * 0.05));
+    .toBe(Math.trunc(data.reportedCases * 50 * 524288 * 0.05));
 });
 
 test('impact.casesForVentilatorsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.casesForVentilatorsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 10 * 524288 * 0.02));
+    .toBe(Math.trunc(data.reportedCases * 10 * 524288 * 0.02));
 });
 
 test('severeImpact.casesForVentilatorsByRequestedTime returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.casesForVentilatorsByRequestedTime)
-    .toBe(Math.floor(data.reportedCases * 50 * 524288 * 0.02));
+    .toBe(Math.trunc(data.reportedCases * 50 * 524288 * 0.02));
 });
 
 test('impact.dollarsInFlight returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.dollarsInFlight)
-    .toBe(Math.floor(data.reportedCases * 10 * 524288 * 0.71 * 5 / 58));
+    .toBe(Math.trunc(data.reportedCases * 10 * 524288 * 0.71 * 5 / 58));
 });
 
 test('severeImpact.dollarsInFlight returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.dollarsInFlight)
-    .toBe(Math.floor(data.reportedCases * 50 * 524288 * 0.71 * 5 / 58));
+    .toBe(Math.trunc(data.reportedCases * 50 * 524288 * 0.71 * 5 / 58));
 });
