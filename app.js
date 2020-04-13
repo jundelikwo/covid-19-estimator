@@ -63,8 +63,10 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   });
 });
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
 
-console.log('Express app running on port 3000');
+app.listen(PORT);
+
+console.log('Express app running on port ' + PORT);
 
 module.exports = app;
