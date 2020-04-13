@@ -14,7 +14,7 @@ export const getNumberOfDays = (periodType, timeToElapse) => {
       days = 0;
       break;
   }
-  return days;
+  return Math.trunc(days);
 };
 
 const covid19ImpactEstimator = (data) => {
