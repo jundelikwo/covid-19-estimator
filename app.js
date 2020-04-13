@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression');
 const js2xmlparser = require('js2xmlparser');
 
 const estimator = require('./src/estimator');
@@ -22,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors());
+
+app.use(compression());
 
 app.use(express.static('./public'));
 
@@ -68,7 +71,7 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
       time = `0${time.toString()}`;
     }
 
-    const log = `GET\t\t${req.route.path}\t\t200\t\t${time}ms\n`;
+    const log = `GET\t\t${req.route.path}\t\t200\t\t${time} ms\n`;
 
     fs.appendFile(logFile, log, () => {});
 
@@ -87,7 +90,7 @@ function logData(method, requestPath, time) {
     time = `0${time.toString()}`;
   }
 
-  fs.appendFile(logFile, `${method}\t\t${requestPath}\t\t200\t\t${time}ms\n`, () => {});
+  fs.appendFile(logFile, `${method}\t\t${requestPath}\t\t200\t\t${time} ms\n`, () => {});
 }
 
 module.exports = app;
