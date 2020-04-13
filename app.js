@@ -71,6 +71,11 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   });
 });
 
+app.delete('/api/v1/on-covid-19/logs', (req, res) => {
+  fs.unlink(logFile);
+  res.send('Deleted');
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT);
