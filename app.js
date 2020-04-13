@@ -59,7 +59,7 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
 
     fs.appendFile(logFile, log, () => {});
 
-    res.send(content + log);
+    res.send((content || '') + log);
   });
 });
 
