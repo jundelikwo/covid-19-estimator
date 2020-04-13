@@ -11,6 +11,13 @@ const app = express();
 
 const logFile = 'logs.txt';
 
+app.use((req, res, next) => {
+  if (req.headers['x-forwarded-proto'] === 'http') {
+    return res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+  next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -67,6 +74,6 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT);
 
-console.log('Express app running on port ' + PORT);
+console.log(`Express app running on port ${PORT}`);
 
 module.exports = app;
