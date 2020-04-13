@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const js2xmlparser = require('js2xmlparser');
@@ -30,19 +31,33 @@ app.post('/api/v1/on-covid-19/json', (req, res) => {
   const end = new Date();
 
   fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
-  
+
   res.json(result);
 });
 
 app.post('/api/v1/on-covid-19/xml', (req, res) => {
   const start = new Date();
-  const result = js2xmlparser.parse("estimate",estimator(req.body));
+  const result = js2xmlparser.parse('estimate', estimator(req.body));
   const end = new Date();
 
   fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
-  
+
   res.set('Content-Type', 'text/xml');
   res.send(result);
+});
+
+app.get('/api/v1/on-covid-19/logs', (req, res) => {
+  const start = new Date();
+
+  fs.readFile(path.join(__dirname, logFile), 'UTF-8', (error, content) => {
+    const end = new Date();
+
+    const log = `GET \t ${req.route.path} \t 200 \t ${end - start}ms \n`;
+
+    fs.appendFile(logFile, log, () => {});
+
+    res.send(content + log);
+  });
 });
 
 app.listen(3000);
