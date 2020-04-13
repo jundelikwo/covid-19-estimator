@@ -47,7 +47,7 @@ app.post('/api/v1/on-covid-19/json', (req, res) => {
 
 app.post('/api/v1/on-covid-19/xml', (req, res) => {
   const start = new Date();
-  const result = js2xmlparser.parse('estimate', estimator(req.body));
+  const result = js2xmlparser.parse('root', estimator(req.body));
   const end = new Date();
 
   fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
