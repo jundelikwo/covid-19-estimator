@@ -65,17 +65,9 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   fs.readFile(path.join(__dirname, logFile), 'UTF-8', (error, content) => {
     const end = new Date();
 
-    let time = end - start;
+    logData('GET', req.route.path, end - start);
 
-    if (time < 10) {
-      time = `0${time.toString()}`;
-    }
-
-    const log = `GET\t\t${req.route.path}\t\t200\t\t${time} ms`;
-
-    fs.appendFile(logFile, `${log}\n`, () => {});
-
-    res.send((content || '') + log);
+    res.send(content || '');
   });
 });
 
