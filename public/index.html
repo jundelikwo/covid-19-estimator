@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <title>COVID-19 Estimator</title>
+</head>
+<body>
+
+<div class="container">
+
+<h2>COVID-19 Estimator</h2>
+
+<form>
+
+  <fieldset class="form-group">
+
+    <div class="form-group row">
+      <label class="form-control-label col-md-4 col-form-label" for="population">Population</label>
+      <div class="col-md-8">
+        <input class="form-control" type="number" min="1" step="1" id="population" data-population placeholder="Population">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-control-label col-md-4 col-form-label" for="reportedCases">Reported Cases</label>
+      <div class="col-md-8">
+        <input class="form-control" type="number" min="1" step="1" id="reportedCases" data-reported-cases placeholder="Reported Cases">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-control-label col-md-4 col-form-label" for="totalHospitalBeds">Total Hospital Beds</label>
+      <div class="col-md-8">
+        <input class="form-control" type="number" min="1" step="1" id="totalHospitalBeds" data-total-hospital-beds placeholder="Total Hospital Beds">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-control-label col-md-4 col-form-label" for="timeToElapse">Time to Elapse</label>
+      <div class="col-md-8">
+        <input class="form-control" type="number" min="1" step="1" data-time-to-elapse id="timeToElapse" placeholder="Time to Elapse">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="form-control-label col-md-4 col-form-label" for="periodType">Period Type</label>
+      <div class="col-md-8">
+        <select class="form-control" data-period-type id="periodType">
+          <option value="days">Days</option>
+          <option value="weeks">Weeks</option>
+          <option value="months">Months</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-12">
+        <button class="btn btn-primary w-100" data-go-estimate type="submit">Submit</button>
+      </div><!-- offset col -->
+    </div>
+
+  </fieldset><!-- fieldset -->
+</form>
+
+
+</div><!-- content container -->
+</body>
+</html>

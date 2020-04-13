@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors());
 
+app.use(express.static('./public'));
+
 app.post('/api/v1/on-covid-19', (req, res) => {
   const start = new Date();
   const result = estimator(req.body);
