@@ -1,4 +1,4 @@
-export const getNumberOfDays = (periodType, timeToElapse) => {
+const getNumberOfDays = (periodType, timeToElapse) => {
   let days;
   switch (periodType) {
     case 'days':
@@ -74,4 +74,4 @@ const covid19ImpactEstimator = (data) => {
   return result;
 };
 
-export default covid19ImpactEstimator;
+module.exports = covid19ImpactEstimator;
