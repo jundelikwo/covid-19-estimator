@@ -52,7 +52,7 @@ app.post('/api/v1/on-covid-19/xml', (req, res) => {
 
   fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
 
-  res.set('Content-Type', 'text/xml');
+  res.header('Content-Type', 'application/xml; charset=UTF-8');
   res.send(result);
 });
 
