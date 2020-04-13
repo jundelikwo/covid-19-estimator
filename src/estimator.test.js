@@ -153,11 +153,11 @@ test('severeImpact.casesForVentilatorsByRequestedTime returns the correct data',
 test('impact.dollarsInFlight returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.impact.dollarsInFlight)
-    .toBe(Math.trunc(data.reportedCases * 10 * 524288 * 0.71 * 5 / 58));
+    .toBe(Math.trunc((data.reportedCases * 10 * 524288 * 0.71 * 5) / 58));
 });
 
 test('severeImpact.dollarsInFlight returns the correct data', () => {
   const result = covid19ImpactEstimator(data);
   expect(result.severeImpact.dollarsInFlight)
-    .toBe(Math.trunc(data.reportedCases * 50 * 524288 * 0.71 * 5 / 58));
+    .toBe(Math.trunc((data.reportedCases * 50 * 524288 * 0.71 * 5) / 58));
 });
