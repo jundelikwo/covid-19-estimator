@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const js2xmlparser = require('js2xmlparser');
 
 const estimator = require('./src/estimator');
@@ -13,7 +14,7 @@ const logFile = 'logs.txt';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.use(cors());
+app.use(cors());
 
 app.post('/api/v1/on-covid-19', (req, res) => {
   const start = new Date();
