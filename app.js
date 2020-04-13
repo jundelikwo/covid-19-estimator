@@ -30,7 +30,7 @@ app.post('/api/v1/on-covid-19', (req, res) => {
   const result = estimator(req.body);
   const end = new Date();
 
-  fs.appendFile(logFile, `POST \t ${req.route.path} \t\t 200 \t ${end - start}ms \n`, () => {});
+  logData('POST', req.route.path, end - start);
 
   res.json(result);
 });
@@ -40,7 +40,7 @@ app.post('/api/v1/on-covid-19/json', (req, res) => {
   const result = estimator(req.body);
   const end = new Date();
 
-  fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
+  logData('POST', req.route.path, end - start);
 
   res.json(result);
 });
@@ -50,7 +50,7 @@ app.post('/api/v1/on-covid-19/xml', (req, res) => {
   const result = js2xmlparser.parse('root', estimator(req.body));
   const end = new Date();
 
-  fs.appendFile(logFile, `POST \t ${req.route.path} \t 200 \t ${end - start}ms \n`, () => {});
+  logData('POST', req.route.path, end - start);
 
   res.header('Content-Type', 'application/xml; charset=UTF-8');
   res.send(result);
@@ -62,7 +62,13 @@ app.get('/api/v1/on-covid-19/logs', (req, res) => {
   fs.readFile(path.join(__dirname, logFile), 'UTF-8', (error, content) => {
     const end = new Date();
 
-    const log = `GET \t ${req.route.path} \t 200 \t ${end - start}ms \n`;
+    let time = end - start;
+
+    if (time < 10) {
+      time = `0${time.toString()}`;
+    }
+
+    const log = `GET\t\t${req.route.path}\t\t200\t\t${time}ms\n`;
 
     fs.appendFile(logFile, log, () => {});
 
@@ -75,5 +81,13 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
 console.log(`Express app running on port ${PORT}`);
+
+function logData(method, requestPath, time) {
+  if (time < 10) {
+    time = `0${time.toString()}`;
+  }
+
+  fs.appendFile(logFile, `${method}\t\t${requestPath}\t\t200\t\t${time}ms\n`, () => {});
+}
 
 module.exports = app;
